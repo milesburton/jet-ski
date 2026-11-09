@@ -1,5 +1,7 @@
 # jet-ski
 
+> **Work in progress. This is a toy project**, built for fun and to experiment. Expect missing features, rough edges and breaking changes. Not production software.
+
 Browser-only jet ski game: procedural waves, buoyancy and planing, deterministic fixed-step physics.
 TypeScript, Vite, three.js. Builds to a single `index.html` that works from `file://`.
 
