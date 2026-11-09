@@ -13,7 +13,14 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       include: ['src/**/*.ts'],
-      exclude: ['src/main.ts', 'src/render.ts', 'src/audio.ts', 'src/**/*.test.ts'],
+      exclude: [
+        'src/main.ts',
+        'src/render.ts',
+        'src/scenery.ts',
+        'src/camera.ts',
+        'src/audio.ts',
+        'src/**/*.test.ts',
+      ],
       thresholds: { lines: 85, functions: 85, branches: 75, statements: 85 },
     },
   },

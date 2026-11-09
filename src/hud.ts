@@ -44,3 +44,35 @@ export const hudModel = (
   checkpoints: formatCheckpoints(race, course),
   penalties: formatPenalties(race, T),
 });
+
+export interface Overlay {
+  readonly title: string;
+  readonly subtitle: string;
+}
+
+/** Centre-screen message for each game phase; an empty title means show nothing. */
+export const overlayFor = (
+  phase: 'menu' | 'countdown' | 'running' | 'wipeout' | 'finished',
+  countdown: number,
+  race: RaceState,
+  T: Tuning = TUNING,
+): Overlay => {
+  switch (phase) {
+    case 'menu':
+      return {
+        title: 'Jet Ski',
+        subtitle: 'W/Up throttle, A/D or arrows steer, Q/E trim. Space to start, R to restart.',
+      };
+    case 'countdown':
+      return { title: String(Math.max(1, Math.ceil(countdown))), subtitle: 'Get ready' };
+    case 'running':
+      return { title: '', subtitle: '' };
+    case 'wipeout':
+      return { title: 'Wipe-out!', subtitle: 'Recovering...' };
+    case 'finished':
+      return {
+        title: `Finished: ${formatLapTime(finalTime(race, T))}`,
+        subtitle: 'Press R to race again',
+      };
+  }
+};

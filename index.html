@@ -15,6 +15,60 @@
       }
       canvas {
         display: block;
+        width: 100vw;
+        height: 100vh;
+      }
+      #wip {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 4px 12px;
+        background: rgba(0, 0, 0, 0.55);
+        color: #ffd23a;
+        font-size: 13px;
+        text-align: center;
+        z-index: 2;
+      }
+      #hud {
+        position: fixed;
+        top: 36px;
+        left: 12px;
+        color: #fff;
+        text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+        font-variant-numeric: tabular-nums;
+        pointer-events: none;
+      }
+      #hud-time {
+        font-size: 36px;
+        font-weight: 600;
+      }
+      #hud-speed,
+      #hud-gates {
+        font-size: 20px;
+      }
+      #hud-pen {
+        font-size: 16px;
+        color: #ffb3a8;
+      }
+      #overlay {
+        position: fixed;
+        inset: 0;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        text-align: center;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+        pointer-events: none;
+      }
+      #overlay-title {
+        font-size: 64px;
+        font-weight: 700;
+      }
+      #overlay-sub {
+        font-size: 20px;
+        max-width: 80vw;
       }
     </style>
   </head>

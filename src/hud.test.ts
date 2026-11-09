@@ -1,6 +1,13 @@
 import { describe, expect, it } from 'vitest';
 import { generateCourse } from './course';
-import { formatCheckpoints, formatLapTime, formatPenalties, formatSpeed, hudModel } from './hud';
+import {
+  formatCheckpoints,
+  formatLapTime,
+  formatPenalties,
+  formatSpeed,
+  hudModel,
+  overlayFor,
+} from './hud';
 import { TUNING } from './tuning';
 import type { RaceState } from './types';
 
@@ -45,5 +52,19 @@ describe('hud', () => {
     const done = hudModel(race({ time: 20, missed: 1, status: 'finished' }), course, 0);
     expect(done.time).toBe(formatLapTime(20 + TUNING.missedPenalty));
     expect(done.penalties).not.toBe('');
+  });
+});
+
+describe('overlayFor', () => {
+  const r = race({ time: 30, missed: 1, status: 'finished' });
+  it('has a message for every phase', () => {
+    expect(overlayFor('menu', 3, race()).title).toBe('Jet Ski');
+    expect(overlayFor('countdown', 2.2, race()).title).toBe('3');
+    expect(overlayFor('countdown', 0.01, race()).title).toBe('1');
+    expect(overlayFor('running', 0, race()).title).toBe('');
+    expect(overlayFor('wipeout', 0, race()).title).toBe('Wipe-out!');
+    expect(overlayFor('finished', 0, r).title).toBe(
+      `Finished: ${formatLapTime(30 + TUNING.missedPenalty)}`,
+    );
   });
 });
