@@ -14,3 +14,9 @@ npm run build      # dist/index.html
 
 Quality gates (all in CI, deploy needs every one): format, lint (no `any`, no `Math.random`), typecheck,
 tests with coverage thresholds, build, `npm audit` (high), secret scan (gitleaks).
+
+## Standards
+
+Same as the rest of this codebase (see VETA): conventional commits enforced by a `commit-msg` hook, a
+pre-commit hook (format, lint, types, docs lint, tests), pure functional core, seeded RNG, fallow for dead
+code, gitleaks, `npm audit`, MIT licence, and a security policy in `SECURITY.md`.

@@ -26,9 +26,19 @@ jobs:
       - run: npm run format:check
       - run: npm run lint
       - run: npm run typecheck
+      - run: npm run lint:md
       - run: npm run test:coverage
       - run: npm run build
       - run: npm audit --audit-level=high
+      # Advisory until the game is wired up: unused exports and dependencies are expected while
+      # the core is built ahead of rendering. Make this blocking once main.ts uses the core.
+      - run: npx fallow dead-code
+        continue-on-error: true
+      - name: Verify the working tree is clean
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "Working tree is dirty after the build:"; git status --short; exit 1
+          fi
       - uses: actions/upload-pages-artifact@v3
         if: github.ref == 'refs/heads/main'
         with:

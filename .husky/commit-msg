@@ -1,0 +1,11 @@
+#!/bin/sh
+# Enforces Conventional Commits: <type>(optional scope): <description>
+commit_msg=$(head -n1 "$1")
+pattern='^(feat|fix|docs|style|refactor|perf|test|chore|build|ci|revert)(\(.+\))?: .{1,100}$'
+if ! echo "$commit_msg" | grep -qE "$pattern"; then
+  echo "ERROR: commit message does not follow Conventional Commits."
+  echo "  Format : <type>(optional scope): <description>"
+  echo "  Types  : feat|fix|docs|style|refactor|perf|test|chore|build|ci|revert"
+  echo "  Yours  : $commit_msg"
+  exit 1
+fi

@@ -14,7 +14,12 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "audit": "npm audit --audit-level=high"
+    "audit": "npm audit --audit-level=high",
+    "prepare": "[ -n \"$CI\" ] || git config core.hooksPath .husky",
+    "lint:md": "markdownlint-cli2 \"**/*.md\" \"#node_modules\" \"#dist\" \"#coverage\"",
+    "fallow:audit": "fallow audit",
+    "fallow:health": "fallow health --score --hotspots",
+    "fallow:dead-code": "fallow dead-code"
   },
   "dependencies": {
     "simplex-noise": "^4.0.3",
@@ -26,6 +31,8 @@
     "@vitest/coverage-v8": "^5.1.0",
     "eslint": "^10.14.0",
     "eslint-config-prettier": "^10.1.8",
+    "fallow": "^3.41.0",
+    "markdownlint-cli2": "^0.24.0",
     "prettier": "^3.9.10",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.72.1",

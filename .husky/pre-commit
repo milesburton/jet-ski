@@ -1,0 +1,13 @@
+#!/bin/sh
+set -e
+echo "Pre-commit checks..."
+if ! git diff --quiet; then
+  echo "ERROR: unstaged changes to tracked files. Stage or stash them first."
+  git diff --name-only
+  exit 1
+fi
+echo "  [1/5] Format..."; npm run -s format:check
+echo "  [2/5] Lint...";   npm run -s lint
+echo "  [3/5] Types...";  npm run -s typecheck
+echo "  [4/5] Docs lint..."; npm run -s lint:md
+echo "  [5/5] Tests...";  npm run -s test
