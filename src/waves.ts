@@ -54,3 +54,11 @@ export const normalAt = (waves: WaveField, x: number, z: number, t: number): Vec
   const l = Math.hypot(gx, gz, 1);
   return { x: -gx / l, y: 1 / l, z: -gz / l };
 };
+
+/** Mean horizontal direction the waves travel (unit), a proxy for the wind direction. */
+export const windDirection = (waves: WaveField): { readonly x: number; readonly z: number } => {
+  const sx = waves.components.reduce((a, c) => a + c.dirX, 0);
+  const sz = waves.components.reduce((a, c) => a + c.dirZ, 0);
+  const l = Math.hypot(sx, sz);
+  return l === 0 ? { x: 0, z: 0 } : { x: sx / l, z: sz / l };
+};

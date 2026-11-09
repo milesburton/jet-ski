@@ -71,6 +71,12 @@ export const TUNING = {
   obstacleRadiusMax: 3,
   craftRadius: 1.2,
 
+  // --- environment forces
+  /** Horizontal acceleration (m/s^2) along the wind at wind 1. */
+  windDrift: 0.4,
+  /** Fraction of g * surface slope that pushes the hull downhill. */
+  wavePush: 0.5,
+
   // --- race
   missedPenalty: 5,
   maxSkippedGates: 2,
